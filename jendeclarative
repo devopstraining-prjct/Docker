@@ -1,0 +1,35 @@
+pipeline{
+agent any
+tools{
+maven "maven 3.8.1"
+}
+stages{
+ stage('checkout'){
+ steps{
+ git credentialsId: 'bc743430-88f5-431b-916a-cba8df4e996a', url: 'https://github.com/devopstraining-prjct/Docker.git'
+ }
+ }
+ stage('Build'){
+ steps{
+ sh "mvn clean package"
+ }
+ }
+ stage('Executesonarreport'){
+ steps{
+ sh "mvn sonar:sonar"
+ }
+ }
+ stage('Uploadintonexus'){
+ steps{
+ sh "mvn clean deploy"
+ }
+ }
+ stage('DeployTomcat'){
+ steps{
+ sshagent(['b8c3ca07-a2d0-4202-a6de-577a3e30b4cb']) {
+ sh "scp -o StrictHostKeyChecking=no target/java-web-app-1.0.0-SNAPSHOT.war ec2-user@13.233.231.102:/opt/apache-tomcat-9.0.48/webapps/"
+ }
+ }
+ }
+}
+}
