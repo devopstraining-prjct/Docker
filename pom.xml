@@ -104,12 +104,12 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Releases Nexus Repository</name>
-	      <url>http://13.233.230.228:8081/repository/docker-release/</url>
+	      <url>http://13.126.176.148:8081/repository/dell-release/</url>
 	    </repository>
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Snapshot Nexus Repository </name>
-	      <url>http://13.233.230.228:8081/repository/docker-snapshot/</url>
+	      <url>http://13.126.176.148:8081/repository/dell-snapshot/</url>
 	    </snapshotRepository>
 	</distributionManagement>
 	
